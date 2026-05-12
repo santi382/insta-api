@@ -65,4 +65,19 @@ class AuthController extends Controller
     {
         return $request->user()->load('profile');
     }
+
+
+ public function searchUsers(Request $request)
+{
+    $q = $request->query('q', '');
+    $users = User::with('profile')
+        ->where(function($query) use ($q) {
+            $query->where('name', 'ilike', "%{$q}%")
+                  ->orWhereHas('profile', fn($p) => $p->where('username', 'ilike', "%{$q}%"));
+        })
+        ->where('id', '!=', $request->user()->id)
+        ->limit(10)
+        ->get();
+    return response()->json($users);
+}
 }
