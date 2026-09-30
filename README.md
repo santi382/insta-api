@@ -4,6 +4,8 @@ API REST de una red social tipo Instagram. La hice para el proyecto de aula de l
 
 Está hecha con Laravel 12 y PHP 8.2. La autenticación es por tokens con Laravel Sanctum.
 
+La desplegamos en la nube de Microsoft Azure para que la app la pudiera usar desde internet.
+
 ## Qué hace
 
 - Registro, inicio y cierre de sesión
